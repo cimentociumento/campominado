@@ -43,6 +43,7 @@ class MockShutdownService implements ShutdownService {
 }
 
 ShutdownService platformShutdownService() {
+  if (kIsWeb) return const MockShutdownService();
   if (Platform.isWindows) return const WindowsShutdownService();
   if (Platform.isLinux) return const LinuxShutdownService();
   if (Platform.isMacOS) return const MacShutdownService();
